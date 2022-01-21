@@ -90,8 +90,12 @@ class QuotesSpider(scrapy.Spider):
         floor = response.css('div.oglField--pietro').css('span.oglField__value::text').get()
         floor_in_total = response.css('div.oglField--l_pieter').css('span.oglField__value::text').get()
 
+        living_area = response.css('div#show-powierzchnia').css('span.oglField__value::text').get()
+
         number_of_rooms = response.css('div.oglField--l_pokoi').css('span.oglField__value::text').get()
         year = response.css('div.oglField--rok_budowy').css('span.oglField__value::text').get()
+
+        thumbnail = response.css('div.oglGalleryTop__item').css('img::attr(src)').get()
 
         yield {
             'id': flat_id,
@@ -103,7 +107,10 @@ class QuotesSpider(scrapy.Spider):
             'floor_in_total': ParserUtil.parse_int(floor_in_total),
             'last_floor': ParserUtil.number_of_rooms(floor) == ParserUtil.parse_int(floor_in_total),
 
+            'living_area': ParserUtil.parse_float(living_area),
+
             'number_of_rooms': ParserUtil.number_of_rooms(number_of_rooms),
             'year': ParserUtil.parse_int(year),
             'url': response.url,
+            'thumbnail': thumbnail,
         }
