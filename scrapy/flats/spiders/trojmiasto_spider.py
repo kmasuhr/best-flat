@@ -100,6 +100,8 @@ class QuotesSpider(scrapy.Spider):
         yield {
             'id': flat_id,
 
+            'title': response.css('h1.title::text').get(),
+
             'price': ParserUtil.parse_float(price),
             'price_per_meter': ParserUtil.parse_float(price_per_meter),
 
