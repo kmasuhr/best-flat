@@ -1,3 +1,4 @@
 tutorial/flats.json
 venv/
 .idea/
+backend/db.sqlite3
