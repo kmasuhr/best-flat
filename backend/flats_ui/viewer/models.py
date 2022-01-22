@@ -29,9 +29,20 @@ class FlatOffer(models.Model):
     url = models.URLField(blank=True, null=True)
     thumbnail = models.URLField(blank=True, null=True)
 
+    created_on = models.DateTimeField(auto_now_add=True)
+
     def update(self, **kwargs):
-        # todo check if changed
-        # todo add created date
+        changed = False
+        changes = {}
+        for key, value in kwargs.items():
+            if key in ['id']:
+                continue
+            if value != getattr(self, key):
+                changed = True
+                changes[key] = value
+
+        if not changed:
+            return
 
         self.is_latest = False
         self.save()
@@ -41,9 +52,7 @@ class FlatOffer(models.Model):
         self.is_latest = True
         self.save()
 
-        for key, value in kwargs.items():
-            if key in ['id']:
-                continue
+        for key, value in changes.items():
             setattr(self, key, value)
 
         self.save()
