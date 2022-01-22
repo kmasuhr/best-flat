@@ -97,10 +97,17 @@ class QuotesSpider(scrapy.Spider):
 
         thumbnail = response.css('div.oglGalleryTop__item').css('img::attr(src)').get()
 
+        location = response.css('div.oglField--address').css('div.oglField__container').get()
+        try:
+            location = HtmlResponse(body=location.replace('<br>', ', '), encoding='utf-8', url='')
+        except:
+            location = None
+
         yield {
             'id': flat_id,
 
             'title': response.css('h1.title::text').get(),
+            'location': location.css('div.oglField__container::text').get(),
 
             'price': ParserUtil.parse_float(price),
             'price_per_meter': ParserUtil.parse_float(price_per_meter),
