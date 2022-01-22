@@ -7,6 +7,8 @@ class EmailDebugView(TemplateView):
     template_name = 'list.html'
 
     def get_context_data(self, **kwargs):
-        return {
-            'flats': FlatOffer.objects.filter(is_latest=True, last_floor=True).order_by('price')
-        }
+        return {'flats': FlatOffer.objects.filter(
+            is_latest=True,
+            last_floor=True,
+            ignore=False,
+        ).order_by('price')}

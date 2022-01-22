@@ -16,9 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from backend.flats_ui.viewer.api import SetAsIgnoreApi, SetAsFavouriteApi
 from backend.flats_ui.viewer.views import EmailDebugView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('elko/', EmailDebugView.as_view())
+    path('elko/', EmailDebugView.as_view()),
+    path('api/v1/ignore/', SetAsIgnoreApi.as_view()),
+    path('api/v1/favourite/', SetAsFavouriteApi.as_view()),
 ]

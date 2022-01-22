@@ -56,9 +56,16 @@
             </div>
           </h6>
 
-          <button data-id="{{ flat.id }}" type="button" class="fav-button btn btn-outline-success btn-sm"
-                  style="margin-right: 10px">Zajebiste
-          </button>
+          {% if flat.favourite %}
+            <button data-id="{{ flat.id }}" type="button" class="fav-button btn btn-success btn-sm"
+                    style="margin-right: 10px">Zajebiste
+            </button>
+          {% else %}
+            <button data-id="{{ flat.id }}" type="button" class="fav-button btn btn-outline-success btn-sm"
+                    style="margin-right: 10px">Zajebiste
+            </button>
+          {% endif %}
+
           <button data-id="{{ flat.id }}" type="button" class="ignore-button btn btn-outline-danger btn-sm">Chujowe
           </button>
 
@@ -78,10 +85,10 @@
             return;
         }
 
+        jQuery.get('/api/v1/favourite/?id=' + offerId)
+
         button.removeClass('btn-outline-success')
         button.addClass('btn-success')
-
-        // set as fav
     });
 
     jQuery('.ignore-button').click(function () {
@@ -89,7 +96,8 @@
         var offerId = element.attr('data-id');
         var wrapper = jQuery('#' + offerId)
 
-        // set as ignore
+        jQuery.get('/api/v1/ignore/?id=' + offerId)
+
         wrapper.hide()
     });
 </script>
