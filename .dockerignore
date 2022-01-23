@@ -1,0 +1,5 @@
+tutorial/flats.json
+venv/
+.idea/
+backend/db.sqlite3
+scrapy/result.json
