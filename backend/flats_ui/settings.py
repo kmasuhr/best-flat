@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'rest_framework',
-    'flats_ui.viewer'
+    'flats_ui.viewer',
 ]
 
 MIDDLEWARE = [

@@ -1,23 +1,24 @@
 import json
 
 from django.core.management import BaseCommand
+
 from flats_ui.viewer.models import FlatOffer
 
 
 class Command(BaseCommand):
-    help = 'Load ingredients from JSON file'
+    help = 'Load flat offers from trojmiasto'
+
+    def add_arguments(self, parser):
+        parser.add_argument('--file')
 
     def handle(self, *args, **options):
-        file_path = '/Users/karol.masuhr/repos/best-flat/scrapy/flats/flats.json'
-        # purge scrapy file
-        # run scrapy
-
-        f = open(file_path)
+        f = open(options.get('file'))
         data = json.load(f)
 
         for flat in data:
             provider_id = flat.get('id')
             if not FlatOffer.objects.filter(provider_id=provider_id).exists():
+                print('Create offer', provider_id)
                 FlatOffer.objects.create(
                     provider='TROJMIASTO',
                     provider_id=provider_id,

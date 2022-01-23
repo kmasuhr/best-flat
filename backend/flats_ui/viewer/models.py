@@ -44,6 +44,8 @@ class FlatOffer(models.Model):
         if not changed:
             return
 
+        print('Create offer', self.provider_id)
+
         self.is_latest = False
         self.save()
 
