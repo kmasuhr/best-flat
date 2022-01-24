@@ -28,17 +28,17 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a id="home" class="nav-link" aria-current="page" href="/list">Do przeklikania</a>
+          <a id="home" class="nav-link" aria-current="page" href="/list">Unhandled</a>
         </li>
 
         <li class="nav-item">
-          <a id="favourite" class="nav-link" href="/list/favourite">Zajebiste</a>
+          <a id="favourite" class="nav-link" href="/list/favourite">Favourite</a>
         </li>
         <li class="nav-item">
-          <a id="ignored" class="nav-link" href="/list/ignored">Chujowe</a>
+          <a id="ignored" class="nav-link" href="/list/ignored">Ignore</a>
         </li>
         <li class="nav-item">
-          <a id="new-offers" class="nav-link" href="/list/new-offers">Nowe oferty</a>
+          <a id="new-offers" class="nav-link" href="/list/new-offers">New offers</a>
         </li>
       </ul>
     </div>
@@ -88,21 +88,21 @@
 
           {% if flat.favourite %}
             <button data-id="{{ flat.id }}" type="button" class="fav-button btn btn-success btn-sm"
-                    style="margin-right: 10px">Zajebiste
+                    style="margin-right: 10px">Favourite
             </button>
           {% else %}
             <button data-id="{{ flat.id }}" type="button" class="fav-button btn btn-outline-success btn-sm"
-                    style="margin-right: 10px">Zajebiste
+                    style="margin-right: 10px">Favourite
             </button>
           {% endif %}
 
           {% if flat.ignore %}
             <button data-id="{{ flat.id }}" type="button" class="ignore-button btn btn-danger btn-sm"
-                    style="margin-right: 10px">Chujowe
+                    style="margin-right: 10px">Ignore
             </button>
           {% else %}
             <button data-id="{{ flat.id }}" type="button" class="ignore-button btn btn-outline-danger btn-sm"
-                    style="margin-right: 10px">Chujowe
+                    style="margin-right: 10px">Ignore
             </button>
           {% endif %}
 
