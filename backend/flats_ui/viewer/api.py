@@ -1,3 +1,5 @@
+from rest_framework import status
+
 from flats_ui.viewer.models import FlatOffer
 from rest_framework.request import Request
 from rest_framework.response import Response
@@ -12,7 +14,7 @@ class SetAsIgnoreApi(APIView):
         offer.ignore = True
         offer.save()
 
-        return Response('elko')
+        return Response('ok', status=status.HTTP_200_OK)
 
 
 class SetAsFavouriteApi(APIView):
@@ -23,4 +25,4 @@ class SetAsFavouriteApi(APIView):
         offer.favourite = True
         offer.save()
 
-        return Response('elko')
+        return Response('ok', status=status.HTTP_200_OK)

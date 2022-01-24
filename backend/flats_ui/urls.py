@@ -21,7 +21,7 @@ from flats_ui.viewer.views import EmailDebugView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('elko/', EmailDebugView.as_view()),
+    path('list/', EmailDebugView.as_view()),
     path('api/v1/ignore/', SetAsIgnoreApi.as_view()),
     path('api/v1/favourite/', SetAsFavouriteApi.as_view()),
 ]
