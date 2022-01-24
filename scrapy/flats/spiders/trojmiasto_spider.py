@@ -66,7 +66,7 @@ class QuotesSpider(scrapy.Spider):
 
     def start_requests(self):
         base_urls = [
-            'https://ogloszenia.trojmiasto.pl/nieruchomosci/e1i,33_58_46_32_1_87_2_7_31,has_hv,1,ikl,101_106,ri,3_,xi,2010_.html',
+            'https://ogloszenia.trojmiasto.pl/nieruchomosci/ai,_3000000,e1i,33_58_46_32_1_87_2_7_31,has_hv,1,ikl,101_106,qi,60_,ri,3_,xi,2010_.html',
         ]
 
         for base_url in base_urls:
