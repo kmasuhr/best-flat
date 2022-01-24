@@ -10,15 +10,14 @@ if [ -d "$DIR" ]; then
 fi
 
 # run crawler
-pushd scrapy
+cd scrapy
 rm -f "${FILE_NAME}"
 scrapy crawl trojmiasto -O "${FILE_NAME}"
 BASE_PATH="$(pwd)"
 FILE_PATH="${BASE_PATH}/${FILE_NAME}"
-popd
+cd ..
 
 # import data
-pushd backend
+cd backend
 python manage.py run_crawler --file "${FILE_PATH}"
-
-popd
+cd ..
