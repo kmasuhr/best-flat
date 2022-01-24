@@ -93,8 +93,15 @@
             </button>
           {% endif %}
 
-          <button data-id="{{ flat.id }}" type="button" class="ignore-button btn btn-outline-danger btn-sm">Chujowe
-          </button>
+          {% if flat.ignore %}
+            <button data-id="{{ flat.id }}" type="button" class="ignore-button btn btn-danger btn-sm"
+                    style="margin-right: 10px">Chujowe
+            </button>
+          {% else %}
+            <button data-id="{{ flat.id }}" type="button" class="ignore-button btn btn-outline-danger btn-sm"
+                    style="margin-right: 10px">Chujowe
+            </button>
+          {% endif %}
 
         </div>
       </div>
@@ -108,14 +115,15 @@
         var button = jQuery(this);
         var offerId = button.attr('data-id');
 
-        if (button.hasClass('btn-success')) {
-            return;
-        }
-
         jQuery.get('/api/v1/favourite/?id=' + offerId)
 
-        button.removeClass('btn-outline-success')
-        button.addClass('btn-success')
+        if (button.hasClass('btn-outline-success')) {
+            button.removeClass('btn-outline-success')
+            button.addClass('btn-success')
+        } else {
+            button.addClass('btn-outline-success')
+            button.removeClass('btn-success')
+        }
     });
 
     jQuery('.ignore-button').click(function () {
