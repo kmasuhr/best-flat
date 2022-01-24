@@ -3,7 +3,11 @@
 export DJANGO_SETTINGS_MODULE=flats_ui.settings
 
 FILE_NAME="result.json"
-source venv/bin/activate
+
+DIR="venv"
+if [ -d "$DIR" ]; then
+  source venv/bin/activate
+fi
 
 # run crawler
 pushd scrapy
