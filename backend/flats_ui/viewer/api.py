@@ -11,7 +11,7 @@ class SetAsIgnoreApi(APIView):
         offer_id = request.query_params.get('id')
         offer = FlatOffer.objects.get(id=offer_id)
 
-        offer.ignore = True
+        offer.ignore = not offer.ignore
         offer.save()
 
         return Response('ok', status=status.HTTP_200_OK)
@@ -22,7 +22,7 @@ class SetAsFavouriteApi(APIView):
         offer_id = request.query_params.get('id')
         offer = FlatOffer.objects.get(id=offer_id)
 
-        offer.favourite = True
+        offer.favourite = not offer.favourite
         offer.save()
 
         return Response('ok', status=status.HTTP_200_OK)
