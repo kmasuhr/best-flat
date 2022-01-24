@@ -23,6 +23,6 @@ class EmailDebugView(TemplateView):
             queryset = queryset.filter(created_on__gte=today - timedelta(days=1))
             queryset = queryset.order_by('-created_on')
         else:
-            queryset = queryset.filter(ignore=False).order_by('price')
+            queryset = queryset.filter(ignore=False, favourite=False).order_by('price')
 
         return {'flats': queryset}
