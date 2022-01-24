@@ -20,7 +20,7 @@ class EmailDebugView(TemplateView):
             queryset = queryset.filter(ignore=True).order_by('price')
         elif query_filter == 'new-offers':
             today = timezone.now()
-            queryset = queryset.filter(created_on__gte=today - timedelta(days=2))
+            queryset = queryset.filter(created_on__gte=today - timedelta(days=1))
             queryset = queryset.order_by('-created_on')
         else:
             queryset = queryset.filter(ignore=False).order_by('price')
