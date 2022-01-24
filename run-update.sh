@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 export DJANGO_SETTINGS_MODULE=flats_ui.settings
 

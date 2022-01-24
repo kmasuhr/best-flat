@@ -1,6 +1,10 @@
-FROM python:3.8
+FROM python:3.9-alpine
 
-RUN mkdir -p /app/code
+ENV DJANGO_SETTINGS_MODULE=flats_ui.settings
+ENV PORT=8000
+
+RUN mkdir -p /app/code && \
+    apk update && apk add python3-dev gcc libc-dev libffi-dev openssl-dev
 
 COPY requirements.txt /app/
 
@@ -9,4 +13,6 @@ RUN pip install --upgrade pip \
 
 WORKDIR /app/code
 
-CMD python manage.py runserver
+ADD . .
+
+CMD ./start.sh
