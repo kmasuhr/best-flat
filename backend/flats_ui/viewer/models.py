@@ -61,3 +61,9 @@ class FlatOffer(models.Model):
 
     def __str__(self):
         return self.title if self.title is not None else '---'
+
+    def is_cool(self) -> bool:
+        return 'slaska' in self.location.lower() \
+               or 'śląska' in self.location.lower() \
+               or 'beniowskiego' in self.location.lower() \
+               or 'futura' in self.title

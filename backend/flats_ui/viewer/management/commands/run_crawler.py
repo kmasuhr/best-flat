@@ -1,6 +1,9 @@
 import json
 
+from django.conf import settings
+from django.core.mail import EmailMessage
 from django.core.management import BaseCommand
+from django.template.loader import get_template
 
 from flats_ui.viewer.models import FlatOffer
 
@@ -19,7 +22,7 @@ class Command(BaseCommand):
             provider_id = flat.get('id')
             if not FlatOffer.objects.filter(provider_id=provider_id).exists():
                 print('Create offer', provider_id)
-                FlatOffer.objects.create(
+                offer = FlatOffer.objects.create(
                     provider='TROJMIASTO',
                     provider_id=provider_id,
 
@@ -41,7 +44,19 @@ class Command(BaseCommand):
                     url=flat.get('url'),
                     thumbnail=flat.get('thumbnail'),
                 )
-                # todo send email
+
+                if offer.is_cool():
+                    html_template = get_template('email.html')
+
+                    mail = EmailMessage(
+                        subject='Nowa oferta',
+                        body=html_template.render({'offer': FlatOffer.objects.first()}),
+                        from_email=settings.DEFAULT_FROM_EMAIL,
+                        to=[settings.DEFAULT_TO_EMAIL],
+                    )
+
+                    mail.content_subtype = 'html'
+                    mail.send()
             else:
                 instance = FlatOffer.objects.get(provider_id=provider_id, is_latest=True)
                 instance.update(**flat)

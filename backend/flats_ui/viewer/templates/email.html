@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<table style="table-layout: fixed;">
+  <tr>
+    <td>title</td>
+    <td>{{ offer.title }}</td>
+  </tr>
+  <tr>
+    <td>location</td>
+    <td>{{ offer.location }}</td>
+  </tr>
+
+  <tr>
+    <td>price</td>
+    <td>{{ offer.price }}</td>
+  </tr>
+  <tr>
+    <td>price_per_meter</td>
+    <td>{{ offer.price_per_meter }}</td>
+  </tr>
+  <tr>
+    <td>living_area</td>
+    <td>{{ offer.living_area }}</td>
+  </tr>
+  <tr>
+    <td>number_of_rooms</td>
+    <td>{{ offer.number_of_rooms }}</td>
+  </tr>
+  <tr>
+    <td>floor</td>
+    <td>{{ offer.floor }}/{{ offer.floor_in_total }}</td>
+  </tr>
+  <tr>
+    <td>year</td>
+    <td>{{ offer.year }}</td>
+  </tr>
+</table>
+
+<a href="{{ offer.url }}" target="_blank">Go to</a>
+
+</body>
+</html>

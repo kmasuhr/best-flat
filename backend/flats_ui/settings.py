@@ -9,8 +9,10 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-from importlib._common import _
+import os
 from pathlib import Path
+
+from importlib._common import _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -69,7 +71,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'flats_ui.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -97,6 +98,21 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+###########################################
+# Email
+###########################################
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = os.environ.get('SENDGRID_USERNAME', 'apikey')
+EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_PASSWORD', 'sendgrid_password')
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL = '<kontakt@{}>'.format(str(os.environ.get('DOMAIN', 'best-flat.pl')))
+DEFAULT_TO_EMAIL = os.environ.get('DEFAULT_TO_EMAIL')
+
+if 'SENDGRID_PASSWORD' not in os.environ or 'SENDGRID_USERNAME' not in os.environ:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
