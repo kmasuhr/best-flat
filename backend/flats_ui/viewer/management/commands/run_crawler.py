@@ -41,6 +41,7 @@ class Command(BaseCommand):
                     url=flat.get('url'),
                     thumbnail=flat.get('thumbnail'),
                 )
+                # todo send email
             else:
                 instance = FlatOffer.objects.get(provider_id=provider_id, is_latest=True)
                 instance.update(**flat)
